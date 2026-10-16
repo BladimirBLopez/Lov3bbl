@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Para ti 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;font-family:Poppins,sans-serif;color:#fff;text-align:center;
+background:linear-gradient(160deg,#2b0a3d,#7a1f5c,#e0457b);background-attachment:fixed;overflow-x:hidden}
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;position:relative;z-index:1}
+h1{font-family:'Dancing Script',cursive;font-size:3.2rem;margin-bottom:12px}
+#typed{font-size:1.1rem;font-weight:300;max-width:340px;line-height:1.7;min-height:7em}
+.arrow{margin-top:24px;font-size:2rem;animation:b 1.5s infinite}
+@keyframes b{50%{transform:translateY(10px)}}
+.card{background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:18px;padding:18px;margin:8px 0;max-width:340px;width:100%}
+.btns{display:flex;gap:14px;margin-top:22px;align-items:center;justify-content:center;min-height:60px}
+button{border:0;border-radius:30px;padding:14px 28px;font-size:1.05rem;cursor:pointer;font-family:inherit}
+#si{background:#fff;color:#c2185b;font-weight:600}
+#no{background:rgba(255,255,255,.2);color:#fff}
+#final{display:none;font-family:'Dancing Script',cursive;font-size:2.4rem}
+.h{position:fixed;bottom:-30px;animation:up linear forwards;z-index:0;pointer-events:none}
+@keyframes up{to{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+</style>
+</head>
+<body>
+<section>
+  <h1>Hola, Estefany 💗</h1>
+  <p id="typed"></p>
+  <div class="arrow">⌄</div>
+</section>
+<section>
+  <h1>Por qué te quiero</h1>
+  <div class="card">Tu sonrisa me cambia el día ✨</div>
+  <div class="card">Contigo todo se siente fácil 🌙</div>
+  <div class="card">Eres mi persona favorita 💫</div>
+</section>
+<section>
+  <h1 id="q">¿Quieres ser mi novia?</h1>
+  <div class="btns" id="btns">
+    <button id="si">Sí 💖</button>
+    <button id="no">No 🙈</button>
+  </div>
+  <p id="final">Te quiero mucho, Estefany 💕<br><small style="font-size:1rem;font-family:Poppins">— TU_Ella</small></p>
+</section>
+<script>
+const msg="Hice esta página porque hay cosas que quiero decirte desde hace tiempo. Me gustas muchísimo y quería que lo supieras de una forma especial.";
+let i=0;const t=document.getElementById('typed');
+(function w(){if(i<msg.length){t.textContent+=msg[i++];setTimeout(w,45)}})();
+function heart(){const h=document.createElement('div');h.className='h';
+h.textContent=['💗','💖','💕','✨'][Math.random()*4|0];
+h.style.left=Math.random()*100+'vw';h.style.fontSize=(14+Math.random()*22)+'px';
+h.style.animationDuration=(5+Math.random()*5)+'s';document.body.appendChild(h);
+setTimeout(()=>h.remove(),10000)}
+setInterval(heart,350);
+const no=document.getElementById('no');
+function run(e){e.preventDefault();no.style.position='fixed';
+no.style.left=Math.random()*(innerWidth-110)+'px';
+no.style.top=Math.random()*(innerHeight-60)+'px'}
+no.addEventListener('touchstart',run);no.addEventListener('mouseover',run);
+document.getElementById('si').onclick=()=>{
+document.getElementById('btns').style.display='none';
+document.getElementById('q').style.display='none';
+document.getElementById('final').style.display='block';
+for(let k=0;k<40;k++)setTimeout(heart,k*60)};
+</script>
+</body>
+</html>
