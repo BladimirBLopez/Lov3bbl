@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Para Estefany 💌</title>
+<meta name="theme-color" content="#12041f"><title>Para Estefany 💌</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -57,7 +57,7 @@ h2{font-size:2.3rem;color:#ffd1e0}
 #lb{position:fixed;top:0;left:0;right:0;bottom:0;background:#000d;z-index:20;display:none;align-items:center;justify-content:center}
 #lb.on{display:flex}
 #lb img{max-width:92%;max-height:86%;border:8px solid #fff;border-radius:6px}
-</style></head><body>
+html{background:#12041f}body:before{bottom:auto;height:130vh}</style></head><body>
 <canvas id="c"></canvas>
 <div id="intro"><div class="hb">💗</div><p style="font-weight:300">Hay algo especial para ti, Estefany</p><button class="btn" id="open">Abrir</button></div>
 <main id="main" hidden>
@@ -81,7 +81,7 @@ h2{font-size:2.3rem;color:#ffd1e0}
 <script>
 const $=s=>document.querySelector(s);
 const cv=$('#c'),x=cv.getContext('2d');let W,H,P=[];
-function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
+function rs(){W=cv.width=innerWidth;H=cv.height=Math.max(innerHeight,screen.height);cv.style.height=H+"px"}rs();addEventListener('resize',rs);
 function add(px,py,b){P.push({x:px,y:py,vx:(Math.random()-.5)*(b?8:1.2),vy:b?-Math.random()*8-2:-Math.random()*1.3-.3,g:b?.15:0,s:12+Math.random()*18,a:1,e:['💗','💖','💕','✨','🌸'][Math.random()*5|0]})}
 (function loop(){x.clearRect(0,0,W,H);if(Math.random()<.12)add(Math.random()*W,H+20);
 P=P.filter(p=>p.a>0&&p.y<H+50);
