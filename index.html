@@ -57,7 +57,8 @@ h2{font-size:2.3rem;color:#ffd1e0}
 #lb{position:fixed;top:0;left:0;right:0;bottom:0;background:#000d;z-index:20;display:none;align-items:center;justify-content:center}
 #lb.on{display:flex}
 #lb img{max-width:92%;max-height:86%;border:8px solid #fff;border-radius:6px}
-html{background:#12041f}body:before{bottom:auto;height:130vh}</style></head><body>
+html{background:#12041f}body:before{bottom:auto;height:130vh}#mus{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:9;width:46px;height:46px;border-radius:50%;border:1px solid #ffffff44;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);font-size:1.3rem;color:#fff;padding:0}
+</style></head><body>
 <canvas id="c"></canvas>
 <div id="intro"><div class="hb">💗</div><p style="font-weight:300">Hay algo especial para ti, Stefany</p><button class="btn" id="open">Abrir</button></div>
 <main id="main" hidden>
@@ -77,7 +78,7 @@ html{background:#12041f}body:before{bottom:auto;height:130vh}</style></head><bod
 <div class="btns" id="btns"><button class="btn" id="si">Sí 💖</button><button class="btn" id="no">No 🙈</button></div>
 <p id="final">Sabía que dirías que sí 💕<br>Te quiero, Stefany<br><small style="font-size:1rem;font-family:Poppins">— Bladimir</small></p></section>
 </main>
-<div id="lb"><img alt=""></div>
+<audio id="bgm" src="audio/stefany.mp3" loop preload="auto"></audio><button id="mus" aria-label="musica">🔊</button><div id="lb"><img alt=""></div>
 <script>
 const $=s=>document.querySelector(s);
 const cv=$('#c'),x=cv.getContext('2d');let W,H,P=[];
@@ -95,7 +96,7 @@ const D=new Date('2025-01-01');
 function tick(){const d=Math.max(0,Date.now()-D),f=(n,l)=>'<div><b>'+n+'</b><small>'+l+'</small></div>';
 $('#count').innerHTML=f(d/864e5|0,'días')+f(d/36e5%24|0,'horas')+f(d/6e4%60|0,'min')+f(d/1e3%60|0,'seg')}
 setInterval(tick,1000);tick();
-$('#open').onclick=()=>{$('#intro').style.opacity=0;setTimeout(()=>$('#intro').remove(),1200);
+$('#open').onclick=()=>{const bg=document.getElementById('bgm');bg.volume=.8;bg.play().catch(()=>{});$('#intro').style.opacity=0;setTimeout(()=>$('#intro').remove(),1200);
 $('#main').hidden=false;typeIt();
 const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.2});
 document.querySelectorAll('.r').forEach(el=>o.observe(el));
@@ -111,4 +112,5 @@ document.querySelector('.envw').onclick=function(){this.classList.add('open');fo
 
 document.querySelectorAll('.pol img').forEach(i=>i.onclick=()=>{const l=document.getElementById('lb');l.querySelector('img').src=i.src;l.classList.add('on')});
 document.getElementById('lb').onclick=function(){this.classList.remove('on')};
+(function(){const b=document.getElementById('bgm'),m=document.getElementById('mus');m.onclick=()=>{if(b.paused){b.play();m.textContent='🔊'}else{b.pause();m.textContent='🔇'}}})();
 </script></body></html>
